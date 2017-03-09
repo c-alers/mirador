@@ -43,7 +43,7 @@
             name : 'layers',
             options : {
               available: _this.layersTabAvailable,
-              id:'layersTab', 
+              id:'layersTab',
               label:'Layers'
             }
           },
