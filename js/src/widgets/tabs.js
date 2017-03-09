@@ -19,8 +19,6 @@
 
             this.state({
                 tabs : this.tabs,
-                //tabs: [{id:'tocTab', label:'Indices'}, {id:'annotationsTab', label:'Annotations'}],
-                //tabs: [{id:'tocTab', label:'Indices'}],
                 selectedTabIndex: 0
             }, true);
             this.listenForActions();
@@ -79,7 +77,7 @@
                     return value.options.available;
                 });
                 renderingData.tabs = tabs;
-                if(renderingData.tabs.length === 1){                    
+                if(renderingData.tabs.length === 1){
                     // TODO: temporary logic to minimize side panel if only tab is toc and toc is empty
                     if (renderingData.tabs[0].name === 'toc' && !_this.hasStructures) {
                         _this.eventEmitter.publish("sidePanelVisibilityByTab." + _this.windowId, false);

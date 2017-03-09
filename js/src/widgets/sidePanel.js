@@ -9,7 +9,6 @@
       tocTabAvailable:   false,
       annotationsTabAvailable: false,
       layersTabAvailable: false,
-      toolsTabAvailable: false,
       hasStructures:     false,
       state:             null,
       eventEmitter:      null
@@ -48,14 +47,6 @@
               label:'Layers'
             }
           },
-          /*{
-           name : 'tools',
-           options : {
-           available: _this.toolsTabAvailable,
-           id:'toolsTab', 
-           label:'Tools'
-           }
-           }*/
         ],
         width: 280,
         open: true
