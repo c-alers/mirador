@@ -6,9 +6,9 @@
       appendTo:          null,
       manifest:          null,
       panelState:        {},
-      tocTabAvailable:   false,
+      tocTabAvailable:   null,
       annotationsTabAvailable: false,
-      layersTabAvailable: false,
+      layersTabAvailable: null,
       hasStructures:     false,
       state:             null,
       eventEmitter:      null
