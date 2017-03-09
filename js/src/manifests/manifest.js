@@ -58,6 +58,7 @@
 
       this.request.done(function(jsonLd) {
         _this.jsonLd = jsonLd;
+        _this.buildCanvasesIndex();
       });
     },
     initFromInfoJson: function(infoJsonUrl) {
@@ -69,6 +70,7 @@
       });
       this.request.done(function(jsonLd) {
         _this.jsonLd = _this.generateInfoWrapper(jsonLd);
+        _this.buildCanvasesIndex();
       });
     },
     initFromManifestContent: function (manifestContent) {
@@ -78,6 +80,13 @@
         _this.jsonLd = jsonLd;
       });
       _this.request.resolve(manifestContent); // resolve immediately
+    },
+    buildCanvasesIndex: function(){
+      this.canvases = this.getCanvases().reduce(function(canvasesIndex, canvas) {
+        canvasesIndex[canvas['@id']] = canvas;
+        return canvasesIndex;
+      }, {});
+      // Now you can get canvases with manifest.canvases[CanvasID]
     },
     getThumbnailForCanvas : function(canvas, width) {
       var version = "1.1",
@@ -96,10 +105,10 @@
         } else if (canvas.thumbnail.hasOwnProperty('service')) {
             service = canvas.thumbnail.service;
             if(service.hasOwnProperty('profile')) {
-               compliance = $.Iiif.getComplianceLevelFromProfile(service.profile);    
+               compliance = $.Iiif.getComplianceLevelFromProfile(service.profile);
             }
             if(compliance === 0){
-                // don't change existing behaviour unless compliance is explicitly 0            
+                // don't change existing behaviour unless compliance is explicitly 0
                 thumbnailUrl = canvas.thumbnail['@id'];
             } else {
                 // Get the IIIF Image API via the @context
