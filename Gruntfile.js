@@ -43,7 +43,8 @@ module.exports = function(grunt) {
     'node_modules/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js',
     'node_modules/i18next-xhr-backend/i18nextXHRBackend.min.js',
     'js/lib/modernizr.custom.js',
-    'js/lib/sanitize-html.min.js'
+    'js/lib/sanitize-html.min.js',
+    'node_modules/iiif-evented-canvas/dist/iiif-evented-canvas.umd.min.js',
   ],
 
   // source files
