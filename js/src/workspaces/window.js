@@ -90,6 +90,8 @@
       _this.imagesList = _this.manifest.getCanvases();
       if (!_this.canvasID) {
         _this.canvasID = _this.imagesList[0]['@id'];
+        var canvasModel = _this.manifest.canvases[_this.canvasID];
+        canvasModel.show(); // This causes all "main" (non-choice) images to be requested.
       }
 
       this.annoEndpointAvailable = !jQuery.isEmptyObject(_this.state.getStateProperty('annotationEndpoint'));
@@ -175,7 +177,7 @@
       //TODO: this needs to switch the position when it is a right to left manifest
       this.element.find('.manifest-info .window-manifest-title').qtip({
         content: {
-          text: jQuery(this).attr('title'),
+          text: jQuery(this).attr('title')
         },
         position: {
           my: 'top center',
@@ -747,6 +749,14 @@
     setCurrentCanvasID: function(canvasID) {
       var _this = this;
       _this.canvasID = canvasID;
+
+      var canvasModel = _this.manifest.canvases[_this.canvasID];
+      canvasModel.show(); // This causes all "main" (non-choice) images to be requested.
+      // TODO: Completely remove the 'removeTooltips' event. They are not actions and
+      // they do not represent any state change. They are essentially
+      // function calls, which should be handled as responses to the
+      // publication of the state update event currentCanvasIDUpdated
+      // below.
       _this.eventEmitter.publish('removeTooltips.' + _this.id);
       _this.eventEmitter.unsubscribe(('annotationListLoaded.' + _this.id));
       while(_this.annotationsList.length > 0) {
@@ -763,7 +773,6 @@
         default:
           break;
       }
-      console.log(canvasID);
       _this.eventEmitter.publish(('currentCanvasIDUpdated.' + _this.id), canvasID);
     },
 
