@@ -686,7 +686,6 @@
       _this.eventEmitter.publish('osdOpen.'+_this.windowId);
       _this.addAnnotationsLayer(_this.elemAnno);
 
-
       if (_this.osdOptions.osdBounds) {
         var newBounds = new OpenSeadragon.Rect(_this.osdOptions.osdBounds.x, _this.osdOptions.osdBounds.y, _this.osdOptions.osdBounds.width, _this.osdOptions.osdBounds.height);
         _this.osd.viewport.fitBounds(newBounds, true);
@@ -694,8 +693,6 @@
         // else reset bounds for this image
         _this.setBounds();
       }
-
-      _this.addAnnotationsLayer(_this.elemAnno);
 
       // get the state before resetting it so we can get back to that state
       var originalState = _this.hud.annoState.current;
